@@ -1,15 +1,17 @@
-const app = require('../../main/mock/learningMocks.js');
 const { meuForEach } = require('../../main/mock/learningMocks.js');
 
-const meuMock = jest.fn(x => 15 + x);
-
-beforeAll(() => {
-    meuForEach([2, 5, 8, 13, 20, 33], meuMock);
-    app.meuForEach([92, 95, 98, 913, 920, 933], meuMock);
-})
+const meuMock = jest
+    .fn(x => 15 + x) // implementação default
+    .mockImplementationOnce(x => 15 + x)
+    .mockName('myMockName'); //precisa 1 linha
 
 //return all methods of meuMock
 //console.log(meuMock);
+    
+beforeAll(() => {
+    meuForEach([2, 5, 8, 13, 20, 33], meuMock);
+    meuForEach([92, 95, 98, 913, 920, 933], meuMock);
+})
 
 describe('mocks in JavaScript', () => {
     test('should return length of array', () => {
@@ -35,7 +37,7 @@ describe('mocks in JavaScript', () => {
     });
 
     test('should return the name of mock', () => {
-        expect(meuMock.getMockName()).toBe('jest.fn()');
-        expect(meuMock.getMockName()).toEqual('jest.fn()');
+        expect(meuMock.getMockName()).not.toBe('jest.fn()');
+        expect(meuMock.getMockName()).toEqual('myMockName');
     });
 });
