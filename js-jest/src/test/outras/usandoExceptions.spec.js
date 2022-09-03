@@ -1,7 +1,7 @@
-const app = require('../../main/function/functionWithException.js');
+const app = require('../../main/outras/usandoExeptions.js');
 const { Person } = require('../../main/model/Person.js');
 const { UserException } = require('../../main/exception/UserException.js');
-const { findByRegularExpression } = require('../../main/regExp/regularExpression.js');
+const { findByRegularExpression } = require('../../main/strings/regularExpression.js');
 
 const errorMessageInvalidMonth = 'invalid month';
 

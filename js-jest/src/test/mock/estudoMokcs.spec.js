@@ -1,4 +1,8 @@
-const { meuForEach } = require('../../main/mock/learningMocks.js');
+function meuForEach(items, callback) {
+    for (const element of items) {
+        callback(element);
+    }
+}
 
 const meuMock = jest
     .fn(x => 15 + x) // implementação default

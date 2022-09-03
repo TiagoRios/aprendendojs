@@ -1,7 +1,7 @@
-const {somar, subtrair} = require('../../main/mathOperations/mathOperations.js');
-const app = require('../../main/mathOperations/mathOperations.js');
-const msg = 'valores devem ser números ou strings numericas';
-const msgDivisaoZero = 'denominador não pode ser igual a zero';
+const {somar, subtrair} = require('../../main/matematica/operacoesMatematica.js');
+const OPERACAO = require('../../main/matematica/operacoesMatematica.js');
+const MSG_DIVISAO_POR_ZERO = 'denominador não pode ser igual a zero';
+const MSG_DEVEM_SER_NUMEROS = 'valores devem ser números ou strings numericas';
 
 describe('aprendendo TDD javaScript', () => {
 
@@ -11,35 +11,35 @@ describe('aprendendo TDD javaScript', () => {
     })
 
     test('deve somar string numerica', () => {
-      expect(app.somar('6', 3)).toBe(9);
+      expect(OPERACAO.somar('6', 3)).toBe(9);
     })
 
     test('deve somar string numerica', () => {
-      expect(app.somar(3, '6')).toBe(9);
+      expect(OPERACAO.somar(3, '6')).toBe(9);
     })
 
     test('deve somar string numerica', () => {
-      expect(app.somar('6', '3')).toBe(9);
+      expect(OPERACAO.somar('6', '3')).toBe(9);
     })
 
     test('não deve somar denominador string alfanumerica', () => {
-      expect(() => app.somar(3, "asdf")).toThrow(msg);
+      expect(() => OPERACAO.somar(3, "asdf")).toThrow(MSG_DEVEM_SER_NUMEROS);
     })
 
     test('não deve somar esquecer algum parametro', () => {
-      expect(() => app.somar()).toThrow(msg);
+      expect(() => OPERACAO.somar()).toThrow(MSG_DEVEM_SER_NUMEROS);
     })
 
     test('não deve somar valores undefined', () => {
-      expect(() => app.somar(undefined, undefined)).toThrow(msg);
+      expect(() => OPERACAO.somar(undefined, undefined)).toThrow(MSG_DEVEM_SER_NUMEROS);
     })
 
     test('não deve somar valores não numericos', () => {
-      expect(() => app.somar("asdf", NaN)).toThrow(msg);
+      expect(() => OPERACAO.somar("asdf", NaN)).toThrow(MSG_DEVEM_SER_NUMEROS);
     })
 
     test('não deve somar valores não numericos parte 2', () => {
-      expect(() => app.somar([], NaN)).toThrow(msg);
+      expect(() => OPERACAO.somar([], NaN)).toThrow(MSG_DEVEM_SER_NUMEROS);
     })
   });
 
@@ -51,31 +51,31 @@ describe('aprendendo TDD javaScript', () => {
     })
 
     test('deve subtrair string numerica', () => {
-      expect(app.subtrair('6', 3)).toBe(3);
+      expect(OPERACAO.subtrair('6', 3)).toBe(3);
     })
 
     test('deve subtrair string numerica', () => {
-      expect(app.subtrair('6', '3')).toBe(3);
+      expect(OPERACAO.subtrair('6', '3')).toBe(3);
     })
 
     test('não deve subtrair string alfanumerica', () => {
-      expect(() => app.subtrair(3, "asdf")).toThrow(msg);
+      expect(() => OPERACAO.subtrair(3, "asdf")).toThrow(MSG_DEVEM_SER_NUMEROS);
     })
 
     test('não deve subtrair esquecer algum parametro', () => {
-      expect(() => app.subtrair()).toThrow(msg);
+      expect(() => OPERACAO.subtrair()).toThrow(MSG_DEVEM_SER_NUMEROS);
     })
 
     test('não deve subtrair valores undefined', () => {
-      expect(() => app.subtrair(undefined, undefined)).toThrow(msg);
+      expect(() => OPERACAO.subtrair(undefined, undefined)).toThrow(MSG_DEVEM_SER_NUMEROS);
     })
 
     test('não deve subtrair valores não numericos', () => {
-      expect(() => app.subtrair("asdf", NaN)).toThrow(msg);
+      expect(() => OPERACAO.subtrair("asdf", NaN)).toThrow(MSG_DEVEM_SER_NUMEROS);
     })
 
     test('não deve subtrair valores não numericos parte 2', () => {
-      expect(() => app.subtrair([], NaN)).toThrow(msg);
+      expect(() => OPERACAO.subtrair([], NaN)).toThrow(MSG_DEVEM_SER_NUMEROS);
     })
   });
 
@@ -83,73 +83,73 @@ describe('aprendendo TDD javaScript', () => {
 
   describe('test multiplicação', () => {
     test('deve multiplicar 2 números', () => {
-      expect(app.multiplicar(2, 2)).toBe(4);
+      expect(OPERACAO.multiplicar(2, 2)).toBe(4);
     })
 
     test('deve multiplicar string numerica', () => {
-      expect(app.multiplicar('6', 3)).toBe(18);
+      expect(OPERACAO.multiplicar('6', 3)).toBe(18);
     })
 
     test('deve multiplicar string numerica', () => {
-      expect(app.multiplicar('6', '3')).toBe(18);
+      expect(OPERACAO.multiplicar('6', '3')).toBe(18);
     })
 
     test('não deve multiplicar denominador string alfanumerica', () => {
-      expect(() => app.multiplicar(3, "asdf")).toThrow(msg);
+      expect(() => OPERACAO.multiplicar(3, "asdf")).toThrow(MSG_DEVEM_SER_NUMEROS);
     })
 
     test('não deve multiplicar esquecer algum parametro', () => {
-      expect(() => app.multiplicar()).toThrow(msg);
+      expect(() => OPERACAO.multiplicar()).toThrow(MSG_DEVEM_SER_NUMEROS);
     })
 
     test('não deve multiplicar valores undefined', () => {
-      expect(() => app.multiplicar(undefined, undefined)).toThrow(msg);
+      expect(() => OPERACAO.multiplicar(undefined, undefined)).toThrow(MSG_DEVEM_SER_NUMEROS);
     })
 
     test('não deve multiplicar valores não numericos', () => {
-      expect(() => app.multiplicar("asdf", NaN)).toThrow(msg);
+      expect(() => OPERACAO.multiplicar("asdf", NaN)).toThrow(MSG_DEVEM_SER_NUMEROS);
     })
 
     test('não deve multiplicar valores não numericos parte 2', () => {
-      expect(() => app.multiplicar([], NaN)).toThrow(msg);
+      expect(() => OPERACAO.multiplicar([], NaN)).toThrow(MSG_DEVEM_SER_NUMEROS);
     })
   });
 
   describe('test dividir', () => {
     test('deve dividir 2 números', () => {
-      expect(app.dividir(6, 3)).toBe(2);
+      expect(OPERACAO.dividir(6, 3)).toBe(2);
     })
 
     test('deve dividir denominador string numerica', () => {
-      expect(app.dividir('6', 3)).toBe(2);
+      expect(OPERACAO.dividir('6', 3)).toBe(2);
     })
 
     test('deve dividir denominador e numerador string numerica', () => {
-      expect(app.dividir('6', '3')).toBe(2);
+      expect(OPERACAO.dividir('6', '3')).toBe(2);
     })
 
     test('não deve dividir denominador igual a 0 e throw ERROR', () => {
-      expect(() => app.dividir(6, 0)).toThrow(msgDivisaoZero);
+      expect(() => OPERACAO.dividir(6, 0)).toThrow(MSG_DIVISAO_POR_ZERO);
     })
 
     test('não deve dividir denominador string alfanumerica', () => {
-      expect(() => app.dividir(3, "asdf")).toThrow(msg);
+      expect(() => OPERACAO.dividir(3, "asdf")).toThrow(MSG_DEVEM_SER_NUMEROS);
     })
 
     test('não deve dividir esquecer algum parametro', () => {
-      expect(() => app.dividir()).toThrow(msg);
+      expect(() => OPERACAO.dividir()).toThrow(MSG_DEVEM_SER_NUMEROS);
     })
 
     test('não deve dividir valores undefined', () => {
-      expect(() => app.dividir(undefined, undefined)).toThrow(msg);
+      expect(() => OPERACAO.dividir(undefined, undefined)).toThrow(MSG_DEVEM_SER_NUMEROS);
     })
 
     test('não deve dividir valores não numericos', () => {
-      expect(() => app.dividir("asdf", NaN)).toThrow(msg);
+      expect(() => OPERACAO.dividir("asdf", NaN)).toThrow(MSG_DEVEM_SER_NUMEROS);
     })
 
     test('não deve dividir valores não numericos parte 2', () => {
-      expect(() => app.dividir([], NaN)).toThrow(msg);
+      expect(() => OPERACAO.dividir([], NaN)).toThrow(MSG_DEVEM_SER_NUMEROS);
     })
   })
 });
