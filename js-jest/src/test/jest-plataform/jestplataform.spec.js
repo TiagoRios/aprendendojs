@@ -33,10 +33,6 @@ val[Symbol('foo')] = 'foo';
 val.map = new Map([['prop', 'value']]);
 val.array = [-0, Infinity, NaN];
 
-/*
-console.log(prettyFormat(val));
-*/
-
 describe('testando a jest-plataform', () => {
   test('deve utilizar o diff', () => {
     let msgDiff = "no visual difference.";
@@ -50,11 +46,11 @@ describe('testando a jest-plataform', () => {
     expect(parseWithComments(code).pragmas['flow']).toEqual('TESTEST');
     expect(parseWithComments(code).pragmas.flow.length).toEqual(7);
   });
-  test('deve usar getType', () => {
+  test('deve utilizar o getType', () => {
     expect(getType(code)).toBe('string');
     expect(getType(val)).toBe('object');
   });
-  test('deve utilizar validade', () =>{
+  test('deve utilizar o validade', () =>{
     expect(resultadoValidate.isValid).toBe(true);
   });
 });
