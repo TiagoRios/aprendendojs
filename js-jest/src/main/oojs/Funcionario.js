@@ -9,7 +9,7 @@ function Funcionario(nome){
 //preferir a outra forma com funcionario.call(this, nome)
 function Gerente(nome){
     this.minhaBase = Funcionario;
-    this.minhaBase(nome),
+    this.minhaBase(nome);
     this.relatorios = ['um relatorio'];
 }
 //prefira a forma com operador new

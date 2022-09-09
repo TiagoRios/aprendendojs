@@ -80,7 +80,7 @@ describe('orientação objetos em js', () => {
         });
     });
     describe('propriedade __proto__ da cadeia de prototypes', () => {
-        test.only(`verificar propriedade __proto__`, () => {
+        test(`verificar propriedade __proto__`, () => {
             expect(engenheiro.__proto__).toBe(Engenheiro.prototype);
             expect(engenheiro.__proto__.__proto__).toBe(Operario.prototype);
             expect(engenheiro.__proto__.__proto__.__proto__).toBe(Funcionario.prototype);
