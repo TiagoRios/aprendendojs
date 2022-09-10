@@ -1,57 +1,93 @@
-{
-const msg = 'valores devem ser números ou strings numericas';
-const msgDivisaoZero = 'denominador não pode ser igual a zero';
+const MSG = 'valores devem ser números ou strings numericas';
+const MSG_DIVISAO_POR_ZERO = 'denominador não pode ser igual a zero';
+const MSG_INFORME_DOIS_OU_MAIS_NUMEROS = 'informe no mínimo dois números';
 
-function somar(a, b) {
-    if(!saoValoresNumericos(a, b))
-        throw new Error(msg);
-    return Number(a) + Number(b);
+let total;
+let resultado;
+
+function somar(...valores) {
+    total = 0;
+    verificarTamanhoMaiorQueZero(valores);
+    for (const element of valores) {
+        if (!eValorNumerico(element))
+            throw new Error(MSG);
+        total += Number(element);
+    }
+    return total;
 }
 
-function subtrair(a, b) {
-    if(!saoValoresNumericos(a, b))
-        throw new Error(msg);
-    return Number(a) - Number(b);
+function somarVariosPropriedadeArguments() {
+    total = 0;
+    verificarTamanhoMaiorQueZero(arguments);
+    //arguments contém todos os valores passados para a função
+    for (const element of arguments) {
+        if (!eValorNumerico(element))
+            throw new Error(MSG);
+        total += Number(element);
+    }
+    return total;
 }
 
-function multiplicar(a, b){
-    if(!saoValoresNumericos(a, b))
-        throw new Error(msg);
-    return Number(a) * Number(b);
+function subtrair(...valores) {
+    total = valores[0]*2;
+    verificarTamanhoMaiorQueZero(valores);
+    for (const element of valores) {
+        if (!eValorNumerico(element))
+            throw new Error(MSG);
+        total -= Number(element);
+    }
+    return total;
 }
 
-function dividir(a, b){
-    if(b === 0)
-        throw new Error(msgDivisaoZero);
-    else if(!saoValoresNumericos(a, b))
-        throw new Error(msg);
+function multiplicar(...valores) {
+    total = 1;
+    verificarTamanhoMaiorQueZero(valores);
+    for (const element of valores) {
+        if (!eValorNumerico(element))
+            throw new Error(MSG);
+        total *= Number(element);
+    }
+    return total;
+}
+
+function dividir(a, b) {
+    if (b === 0)
+        throw new Error(MSG_DIVISAO_POR_ZERO);
+    else if (!eValorNumerico(a) || !eValorNumerico(b))
+        throw new Error(MSG);
     return Number(a) / Number(b);
 }
 
-function saoValoresNumericos(a, b){
-    let resultado;
-    if(a != Number(a) || b != Number(b))
+function eValorNumerico(element) {
+    resultado = false;
+    if (element != Number(element))
         resultado = false;
-    else if(a.isNaN || b.isnNaN)
+    else if (element.isNaN)
         resultado = false;
     else
         resultado = true;
-
     return resultado;
 }
 
+function verificarTamanhoMaiorQueZero(array) {
+    if (array.length < 2)
+        throw new Error(MSG_INFORME_DOIS_OU_MAIS_NUMEROS);
+}
+
+
 function factorial(number) {
     for (let i = 1; i < number; i++) {
-        factorial *= i;
-    }    
+        factorial *= i;
+    }
 }
 
 module.exports = {
-    somar, 
-    dividir, 
-    subtrair, 
-    multiplicar, 
+    somar,
+    somarVarios: somarVariosPropriedadeArguments,
+
+    dividir,
+    subtrair,
+    multiplicar,
 
     factorial,
 };
-}
