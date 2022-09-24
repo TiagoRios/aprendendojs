@@ -27,7 +27,7 @@ let jsomHtmlPequenoSimples = new JSDOM(`
   <script src="jogo-advinhar-numero.js" defer></script>
 </body>`).window;
 
-
+//Demora muito, porque precisa carregar = HTML, CSS, JS. e serializar o retorno.
 beforeAll(async () => {
     jstring = await JSDOM.fromFile('advinhar-numero/jogo-advinhar-numero.html').then(x => {return x.serialize();});
     jsdomFileHtml = new JSDOM(jstring).window;

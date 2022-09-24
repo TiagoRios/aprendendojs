@@ -1,5 +1,5 @@
 const { JSDOM } = require('jsdom');
-//possa chamar sem document e sem window
+//posso chamar sem document e sem window
 let jsDocument = new JSDOM(`<!DOCTYPE html><p>Hello world</p>`).window.document;
 
 test('deve pegar conteudo da tag <P>', () => {
