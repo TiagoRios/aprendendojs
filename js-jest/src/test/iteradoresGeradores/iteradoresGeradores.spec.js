@@ -29,14 +29,14 @@ const IteravelEmbutidoLacoForSomaNumerosArray = (array) => {
         contador += value;
     }
     return contador;
-};
+}
 
 //generator
 function* idMaker() {
     let index = 0;
     while (true)
         yield index++;
-};
+}
 
 function* fibonacci() {
     let fn = 1;

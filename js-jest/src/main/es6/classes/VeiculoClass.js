@@ -13,6 +13,6 @@ class VeiculoClass {
 class MotoClass extends VeiculoClass { }
 
 let motoClass = new MotoClass();
-console.log(motoClass.marca);
+console.log(motoClass.marca); //PRIVADA return undefined
 console.log(motoClass.getMarca());
 //console.log -> motoClass.marca //não preciso chamar como função.
