@@ -1,4 +1,4 @@
-const { Gerente, Operario, Vendedor, Engenheiro, Funcionario } = require('../../main/oojs/Funcionario.js');
+const { Gerente, Operario, Vendedor, Engenheiro, Funcionario } = require('../../../main/oojs/heranca/Funcionario.js');
 
 let gerente, vendedor, operario, engenheiro, funcionario, funcionario2;
 

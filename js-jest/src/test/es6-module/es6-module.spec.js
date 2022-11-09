@@ -1,7 +1,4 @@
-import { tipo, curso } from '../../main/es6/modulos/ES6-export.js';
-
-beforeAll(() => {
-});
+import { tipo, curso } from '../../main/es6-module/ES6-export.js';
 
 describe('Testando modulos ES6', () => {
     test('teste tipo', () => {

@@ -1,5 +1,4 @@
 //Não funciona com palavras GET e SET
-//Antes ES6
 let CarroLiteralFunction = {
     ano: new Date().getFullYear(),
     getAno: function () {
@@ -10,15 +9,14 @@ let CarroLiteralFunction = {
     },
 }
 
-//THIS não funciona com ARROW FUNCTIONS - Olha a cambiarra!
 //Não funciona com palavras GET e SET
 let CarroLiteralES6ArrowFunction = {
     ano: new Date().getFullYear(),
     getAno: () => {
-        return CarroLiteralES6ArrowFunction.ano;
+        return this.ano;
     },
     setAno: (ano) => {
-        CarroLiteralES6ArrowFunction.ano = ano;
+        this.ano = ano;
     },
 }
 
@@ -35,8 +33,7 @@ let CarroLiteralES6 = {
 }
 
 //preciso alterar o nome da variavel/ conflito com nome métodos.
-//Funciona também com definições de CLASSES
-let CarroExpressaoES6GetSet = {
+let CarroLiteralES6GetSet = {
     _ano: new Date().getFullYear(), //Nome diferente dos metodos GET e SET.
     get ano(){
         return this._ano;
@@ -55,5 +52,5 @@ console.log("ES6-ARROW-FUNCTIONS = " + CarroLiteralES6ArrowFunction.getAno());
 CarroLiteralES6.setAno(7777);
 console.log("ES6 = " + CarroLiteralES6.getAno());
 
-CarroExpressaoES6GetSet.ano = 6666; //não define igual função.
-console.log("ES6-GET-SET = " + CarroExpressaoES6GetSet.ano);//não chama igual função. 
+CarroLiteralES6GetSet.ano = 6666; //não define igual função.
+console.log("ES6-GET-SET = " + CarroLiteralES6GetSet.ano);//não chama igual função. 

@@ -1,15 +1,10 @@
 const app = require('../../main/outras/usandoExeptions.js');
-const { Person } = require('../../main/model/Person.js');
 const { UserException } = require('../../main/exception/UserException.js');
 const { findByRegularExpression } = require('../../main/strings/regularExpression.js');
 
 const errorMessageInvalidMonth = 'invalid month';
 
 describe('learning functions from mozilla developer', () => {    
-    test('should return attribute of object', () => {
-        expect(Person.name).toEqual('Lucas');
-    });
-
     test('should equal to Jan', () => {
         expect(app.getMonthName(1)).toEqual('Jan');
     });

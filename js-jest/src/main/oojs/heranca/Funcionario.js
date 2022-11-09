@@ -12,7 +12,7 @@ function Gerente(nome){
     this.minhaBase(nome);
     this.relatorios = ['um relatorio'];
 }
-//prefira a forma com operador new
+//prefira esta forma. parece que com new tem efeitos colaterais.
 Gerente.prototype = Object.create(Funcionario.prototype);
 
 //
