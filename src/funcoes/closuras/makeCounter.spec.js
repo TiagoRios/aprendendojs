@@ -1,7 +1,14 @@
-function makeCounter(){
+/**
+ * Exemplo sobre fechamentos (Closures).
+ * 
+ * Faz a contagem incremental de um número.
+ * 
+ * @returns um número incrementado. 
+ */
+function makeCounter() {
     let count = 0;
 
-    return function(){
+    return function () {
         return count++;
     }
 }

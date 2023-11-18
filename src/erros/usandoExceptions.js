@@ -1,19 +1,34 @@
 const { UserException } = require('./UserException.js');
 
-function getMonthName(mo) {
-    mo = mo - 1; // Ajusta o número do mês para o índice do array (1 = Jan, 12 = Dec)
-    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
-        "Aug", "Sep", "Oct", "Nov", "Dec"];
-    if (months[mo]) {
-        return months[mo];
+/**
+ * Obter o mês a partir do dia.
+ * 
+ * @param {number} monthNumber dia do mês entre 1 e 12. 
+ * 
+ * @returns O nome do mês abreviado.
+ * 
+ * @throws Error caso monthNumber esteja fora da faixa.
+ */
+function getMonthName(monthNumber) {
+    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    if (months[monthNumber - 1]) {
+        return months[monthNumber - 1];
+
     } else {
-        throw Error('invalid month'); //lança uma palavra-chave aqui usada.
+        throw Error('invalid month');
     }
 }
 
-function methodThrowUserException(p) {
-    if (p > 100)
+/**
+ * Método que testa o uso de exceptions personalizadas.
+ * 
+ * @param {number} number Um número maior que 100 lança uma exception.
+ */
+function methodThrowUserException(number) {
+    if (number > 100) {
         throw new UserException("value should be greater than 100");
+    }
 }
 
 module.exports = {

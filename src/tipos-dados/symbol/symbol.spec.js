@@ -1,5 +1,3 @@
-
-
 const DESCRICAO = "identificador";
 const DESCRICAO_GLOBAL = "identificador-global"
 const MSG_ERRO_CONVERSAO = "Cannot convert a Symbol value to a string";
@@ -35,26 +33,29 @@ test(`msg retorno: ${MSG_ERRO_CONVERSAO}`, () => {
     expect(() => "" + symbolLocal).toThrow(MSG_ERRO_CONVERSAO);
 })
 
-/* ================================================== 
-            loop for...in ignora chaves Symbol
-            Object.keys(user) também ignora 
-   ================================================== */
+/* ============================================================ 
+                loop for...in ignora chaves Symbol
+                  Object.keys(user) também ignora 
+   ============================================================ */
 
 test('for..in ignora chaves Symbol', () => {
     let arr = [];
+
     for (let key in user) {
         arr.push(key);
     }
+
     expect(arr.length).toBe(QUANTIDADE_CHAVES_NAO_SIMBOLICAS_USER);
 })
 test('Copia de user, Acesso direto, resultado: 123', () => {
     let copiaUser = Object.assign({}, user); // Copia também as chaves Symbol.
+
     expect(copiaUser[symbolLocal]).toBe(123);
 })
 
-/* ================================================== 
-         Chaves simbolicas não são 100% ocultas
-   ================================================== */
+/* ============================================================ 
+            Chaves simbolicas não são 100% ocultas
+   ============================================================ */
 
 test(`retorna quantidade chaves simbolicas igual a ${QUANTIDADE_CHAVES_SIMBOLICAS_USER}`, () => {
     // Acessar Symbols escondidos.
@@ -64,9 +65,9 @@ test('retorn Array com todas as chaves do objeto user', () => {
     expect(Reflect.ownKeys(user).length).toBe(QUANTIDADE_CHAVES_NAO_SIMBOLICAS_USER + QUANTIDADE_CHAVES_SIMBOLICAS_USER);
 })
 
-/* ================================================== 
-                    Symbols globais
-   ================================================== */
+/* ============================================================ 
+                         Symbols globais
+   ============================================================ */
 
 test('Symbols globais são compartilhados', () => {
     globalSymbol2 = Symbol.for(DESCRICAO_GLOBAL); // busca no registro, se não existir cria novo Symbol e insere no registro.

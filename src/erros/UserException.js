@@ -1,3 +1,8 @@
+/**
+ * Uma exception personalizada.
+ * 
+ * @param {string} mensagem A mensagem sobre o erro.
+ */
 function UserException(mensagem) {
     this.mensagem = mensagem;
     this.name = "UserException";
