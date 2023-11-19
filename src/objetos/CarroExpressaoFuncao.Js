@@ -1,45 +1,55 @@
 let CarroExpressaoFunction = (ano) => {
     return {
         //ano, = Abreviação valor propriedade = tecnica de desestruturação  
-        ano1: ano || new Date().getFullYear() + 44, //Se undefined então valor default;
+        ano: ano || new Date().getFullYear(),
         getAno: function () {
-            return this.ano1;
+            return this.ano;
         },
         setAno: function (ano) {
-            this.ano1 = ano;
+            this.ano = ano;
         },
     }
 }
 
-let CarroExpressaoES6ArrowFunction = () => {
+let CarroExpressaoES6Arrow = function () {
     return {
-        ano2: new Date().getFullYear(),
+        ano: new Date().getFullYear(),
         getAno: () => {
-            return this.ano2;
+            return this.ano;
         },
         setAno: (ano) => {
-            this.ano2 = ano;
+            this.ano = ano;
         },
     }
 }
 
-//Não utilizar dessa maneira com expressão de função.
-//NÃO >>> funcina >>> THIS. preciso fazer gambiarra.
-let CarroExpressaoES6 = function (){
+let CarroExpressaoES6ArrowReferenciaIndireta = function nomeQualquer() {
     return {
-        ano3: new Date().getFullYear() + 78,
-        getAno(){
-            return this.ano3;
-            // returno CarroExpressaoES6.ano3; //Gambiarra
+        ano: new Date().getFullYear(),
+        getAno: () => {
+            return nomeQualquer.ano;
+            // não faça assim:
+            // return CarroExpressaoES6ArrowReferenciaIndiretaAThis.ano;
+        },
+        setAno: (ano) => {
+            nomeQualquer.ano = ano;
+        },
+    }
+}
+
+let CarroExpressaoES6 = () => {
+    return {
+        ano: new Date().getFullYear(),
+        getAno() {
+            return this.ano;
         },
         setAno(ano) {
-            this.ano3 = ano;
-            // returno CarroExpressaoES6.ano3; //Gambiarra
+            this.ano = ano;
         },
     }
 }
 
-let CarroLiteralES6GetSet = () => {
+let CarroExpressaoES6GetSet = () => {
     return {
         _ano: new Date().getFullYear(),
         get ano() {
@@ -51,18 +61,10 @@ let CarroLiteralES6GetSet = () => {
     }
 }
 
-//Não é uma função construtora não preciso usar palavra 'new'.
-let carroExpressaoFunction = CarroExpressaoFunction(10101); //função de fabrica sem usar new.
-console.log(`FUNCTION sem new = ${carroExpressaoFunction.getAno()}`);
-carroExpressaoFunction.setAno(9999);
-console.log(`FUNCTION depois set= ${carroExpressaoFunction.getAno()}`);
-
-CarroExpressaoES6ArrowFunction().setAno(8888);
-console.log("ES6-ARROW-FUNCTIONS = " + CarroExpressaoES6ArrowFunction().getAno()); 
-
-CarroExpressaoES6().setAno(7777); //SETTERS não funcionam com THIS. Apenas GETTERS funcionam
-console.log("ES6 = " + CarroExpressaoES6().getAno());
-
-//Funciona tanto os GETTERS e os SETTERS.
-CarroLiteralES6GetSet.ano = 6666; //não define igual função.
-console.log("ES6-GET-SET = " + CarroLiteralES6GetSet.ano);//não chama igual função.  
+export {
+    CarroExpressaoFunction,
+    CarroExpressaoES6Arrow,
+    CarroExpressaoES6,
+    CarroExpressaoES6GetSet,
+    CarroExpressaoES6ArrowReferenciaIndireta,
+}

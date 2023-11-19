@@ -1,4 +1,15 @@
-//Não funciona com palavras GET e SET
+/**
+* Resumo definição dos métodos.
+* 
+* getAno: function () {...}
+* getAno: () => {...}
+* getAno() {...}
+* get ano() {...}
+*/
+
+/**
+ * Métodos definidos com funções anônimas.
+ */
 let CarroLiteralFunction = {
     ano: new Date().getFullYear(),
     getAno: function () {
@@ -9,8 +20,10 @@ let CarroLiteralFunction = {
     },
 }
 
-//Não funciona com palavras GET e SET
-let CarroLiteralES6ArrowFunction = {
+/**
+ * Métodos definidos com funções de seta. 
+ */
+let CarroLiteralES6Arrow = {
     ano: new Date().getFullYear(),
     getAno: () => {
         return this.ano;
@@ -20,11 +33,30 @@ let CarroLiteralES6ArrowFunction = {
     },
 }
 
-//única forma que funciona com GET e SET
-//Funciona também com definições de CLASSES
+/**
+ * Métodos definidos com funções de seta. 
+ * 
+ * Gambiarra: 
+ *      Colocar o mesmo nome de quem define a função.
+ */
+let CarroLiteralES6ArrowGambiarra = {
+    ano: new Date().getFullYear(),
+    getAno: () => {
+        return CarroLiteralES6ArrowGambiarra.ano;
+    },
+    setAno: (ano) => {
+        CarroLiteralES6ArrowGambiarra.ano = ano;
+    },
+}
+
+/**
+ * Métodos definidos diretos SEM funções anônimas ou de seta.
+ * 
+ * Única forma que funciona com GET e SET
+ */
 let CarroLiteralES6 = {
     ano: new Date().getFullYear(),
-    getAno(){
+    getAno() {
         return this.ano;
     },
     setAno(ano) {
@@ -32,10 +64,19 @@ let CarroLiteralES6 = {
     },
 }
 
-//preciso alterar o nome da variavel/ conflito com nome métodos.
+/**
+ * Métodos definidos usando as palavras chaves GET e SET antes de seus nomes.
+ * 
+ * preciso alterar o nome da variavel/ conflito com nome métodos.
+ * 
+ * A forma de acesso também é diferente:
+ * 
+ * GETTER: CarroLiteralES6GetSet.ano;
+ * SETTER: CarroLiteralES6GetSet.ano = 2000;
+ */
 let CarroLiteralES6GetSet = {
     _ano: new Date().getFullYear(), //Nome diferente dos metodos GET e SET.
-    get ano(){
+    get ano() {
         return this._ano;
     },
     set ano(ano) {
@@ -43,14 +84,10 @@ let CarroLiteralES6GetSet = {
     },
 }
 
-CarroLiteralFunction.setAno(9999);
-console.log(`FUNCTION = ${CarroLiteralFunction.getAno()}`);
-
-CarroLiteralES6ArrowFunction.setAno(8888)
-console.log("ES6-ARROW-FUNCTIONS = " + CarroLiteralES6ArrowFunction.getAno()); 
-
-CarroLiteralES6.setAno(7777);
-console.log("ES6 = " + CarroLiteralES6.getAno());
-
-CarroLiteralES6GetSet.ano = 6666; //não define igual função.
-console.log("ES6-GET-SET = " + CarroLiteralES6GetSet.ano);//não chama igual função. 
+export {
+    CarroLiteralFunction,
+    CarroLiteralES6Arrow,
+    CarroLiteralES6,
+    CarroLiteralES6GetSet,
+    CarroLiteralES6ArrowGambiarra,
+}

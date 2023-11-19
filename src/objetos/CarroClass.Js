@@ -1,38 +1,40 @@
-class CarroClass {
+/**
+ * Definição de classe SEM propriedades privadas.
+ */
+export class CarroClassPropPublica {
     ano; //deixar privada com '#ano'
-    constructor(){ 
+ 
+    constructor() {
         this.ano = new Date().getFullYear();
     }
+ 
     getAno() {
         return this.ano;
     }
+ 
     setAno(ano) {
         this.ano = ano;
     }
 }
 
-let carroClass = new CarroClass(); 
-console.log(`${carroClass.ano} = Propriedade publica`);
-carroClass.setAno(1111);
-console.log(`MetodoGet: ${carroClass.getAno()}`);
+/**
+ * Classe que demonstra como usar Propriedades privadas.
+ * Uma propriedade se torna privada usando o siímbolo '#' antes dela.
+ * 
+ * Essse classe faz o uso de métodos GET e SET (outra forma de definiar métodos).
+ */
+export class CarroClassPropPrivada {
+    #ano; // aqui está privada.
 
-//Uso de GET e SET
-//Propriedade privada
-//pode instanciar com ou sem argumento.
-class CarroClass2 {
-    #ano;
-    constructor(ano){
+    constructor(ano) {
         this.#ano = ano || new Date().getFullYear();
     }
+
     get meuGetAno() {
-        return this.#ano;
+        return this.#ano; // Repare como usar variável privada.
     }
+
     set meuSetAno(ano) {
         this.#ano = ano;
     }
 }
-
-const carroClass2 = new CarroClass2();
-console.log(`${carroClass2.ano} = NÃO ACESSO - Propriedade privada`);
-carroClass2.meuSetAno = 2222;
-console.log(`MetodoGet: ${carroClass2.meuGetAno} - Não function`);
