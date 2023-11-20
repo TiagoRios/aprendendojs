@@ -28,10 +28,12 @@ describe('orientação objetos em js', () => {
         test(`deve definir nome do funcionário passado no construtor`, () => {
             expect(funcionario.nome).toBe(NOME_FUNCIONARIO);
         });
+
         test(`deve usar o nome default do objeto funcionário`, () => {
             expect(funcionario2.nome).toBe('');
         });
     });
+
     describe('operario', () => {
         test(`herança de operario e funcionario`, () => {
             expect(operario.nome).toBe(NOME_OPERARIO);
@@ -40,21 +42,24 @@ describe('orientação objetos em js', () => {
             expect(operario.especialidade).toBe('sem especialidade');
 
         });
+
         test(`operario deve herda propriedade dinãmica`, () => {
             expect(operario.especialidade).toBe('sem especialidade');
         });
     });
+
     describe('gerente', () => {
         test(`herança de gerente e funcionario`, () => {
             expect(gerente.nome).toBe(NOME_GERENTE);
             expect(gerente.departamento).toBe(DEPARTAMENTO_GERAL);
             expect(gerente.relatorios.length).toBe(1);
-            
         });
+
         test(`gerente deve herda propriedade dinãmica`, () => {
             expect(gerente.especialidade).toBe('sem especialidade');
         });
     });
+
     describe('vendedor', () => {
         test(`herança de vendedor e operario`, () => {
             expect(vendedor.nome).toBe(NOME_VENDEDOR);
@@ -62,10 +67,12 @@ describe('orientação objetos em js', () => {
             expect(vendedor.departamento).toBe(DEPARTAMENTO_VENDEDOR);
             expect(vendedor.projetos.length).toBe(0);
         });
+
         test(`vendedor não deve herda propriedade dinãmica`, () => {
             expect(vendedor.especialidade).toBe(undefined);
         });
     });
+
     describe('engenheiro', () => {
         test(`herança de engenheiro e operario`, () => {
             expect(engenheiro.nome).toBe(NOME_ENGENHEIRO);
@@ -75,10 +82,12 @@ describe('orientação objetos em js', () => {
 
             expect(engenheiro.especialidade).toBe('sem especialidade');
         });
+
         test(`engenheiro deve herdar propriedade dinãmica`, () => {
             expect(engenheiro.especialidade).toBe('sem especialidade');
         });
     });
+
     describe('propriedade __proto__ da cadeia de prototypes', () => {
         test(`verificar propriedade __proto__`, () => {
             expect(engenheiro.__proto__).toBe(Engenheiro.prototype);

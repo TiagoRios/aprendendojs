@@ -10,5 +10,5 @@ class VeiculoClass {
 class MotoClass extends VeiculoClass { }
 
 let motoClass = new MotoClass();
-console.log(motoClass.marca);
+console.log(motoClass.marca); // com Intelisense não disponível marca.
 console.log(motoClass.getMarca());

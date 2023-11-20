@@ -1,43 +1,69 @@
-/* 
-funções no mesmo arquivo somente por conveniência.
-*/
-function Funcionario(nome){
+// Funções no mesmo arquivo somente por conveniência.
+
+/**
+ * Função base para demonstrar herança com com prototipagem.
+ * 
+ * @param {*} nome O nome do funcionário. 
+ */
+function Funcionario(nome) {
     this.nome = nome || '';
     this.departamento = 'geral';
 }
 
-//preferir a outra forma com funcionario.call(this, nome)
-function Gerente(nome){
-    this.minhaBase = Funcionario;
-    this.minhaBase(nome);
+/**
+ * Função filha de Funcionário.
+ * 
+ * @param {*} nome 
+ */
+function Gerente(nome) {
+    this.minhaBase = Funcionario; // Preferir funcionario.call(this, nome)
+    this.minhaBase(nome); // Função pai sendo chamada.
     this.relatorios = ['um relatorio'];
 }
-//prefira esta forma. parece que com new tem efeitos colaterais.
-Gerente.prototype = Object.create(Funcionario.prototype);
+Gerente.prototype = Object.create(Funcionario.prototype); // Prefira esta forma.
 
-//
-function Operario(nome){
-    Funcionario.call(this, nome);
+/**
+ * Função filha de Funcionário.
+ * 
+ * @param {*} nome 
+ */
+function Operario(nome) {
+    Funcionario.call(this, nome); // Função pai sendo chamada.
     this.projetos = [];
 }
-Operario.prototype = new Funcionario();
+Operario.prototype = new Funcionario(); // Parece que com new tem efeitos colaterais..
 
-//objeto sem definir o seu prototype 
-//não deve herda propriedades dinãmicas do objeto pai.
-function Vendedor(nome){
-    Operario.call(this, nome);
-    this.departamento = 'vendas' 
-    this.quota = 100;
-}
-
-function Engenheiro(nome, maquina){
-    Operario.call(this, nome);
+/**
+ * Função filha de Operário.
+ * 
+ * @param {*} nome 
+ * @param {*} maquina 
+ */
+function Engenheiro(nome, maquina) {
+    Operario.call(this, nome); // Função pai
     this.departamento = 'engenharia';
-    this.maquina = maquina || 'retro-escavadeira';
+    this.maquina = maquina || 'retro-escavadeira'; // Específico para engenheiros
 }
-Engenheiro.prototype = new Operario();
+Engenheiro.prototype = Object.create(Operario.prototype);
 
-//definição propriedade dinãmica. teste herança dinãmica.
+/**
+ * Função filha de Operário.
+ * 
+ * Esta função não é vinculada ao prototipo da função pai. Ela quebra a cadeia.
+ * As propriedades adicionadas dinamicamente na cadeia de prototipos não são 
+ * herdadas por esta.
+ * 
+ * @param {*} nome 
+ */
+function Vendedor(nome) {
+    Operario.call(this, nome); // Função pai sendo chamada.
+    this.departamento = 'vendas'
+    this.quota = 100; // Específico para vendedores
+}
+// Vendedor.prototype = new Operario(); // Não vinculada a cadeia de prototipos.
+
+
+//Definindo uma propriedade dinãmica para uma função acima na cadeia de prototipos.
 Funcionario.prototype.especialidade = 'sem especialidade';
 
 module.exports = {
