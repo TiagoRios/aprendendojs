@@ -1,5 +1,10 @@
 /* 
-Somente copiado para fazer testes e verificar o funcionamento. 
+Somente copiado para fazer testes e verificar o funcionamento.
+
+Aprender a usar: 
+    yield
+    yield*
+    function*
 */
 const fazerIteracao = (array) => {
     let proximoIndex = 0;

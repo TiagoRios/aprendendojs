@@ -1,3 +1,12 @@
+/* 
+Somente copiado para fazer testes e verificar o funcionamento.
+
+Aprender a usar: 
+    Serve para ????
+    Exemplos de uso e personalização mais detalhada.
+*/
+
+
 const VALOR = 'variavelComValorPadrao';
 const MSG_ERRO_GET = 'Cannot perform \'get\' on a proxy that has been revoked';
 const MSG_ERRO_SET = 'Cannot perform \'set\' on a proxy that has been revoked';
