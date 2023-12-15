@@ -9,7 +9,7 @@ describe('TDD com javascript', () => {
       expect(somar(1, 2)).toBe(3);
     })
 
-    test('deve somar varios números', () => {
+    test('deve somar vários números', () => {
       expect(somar(1, 2, 5, 6, 4, 3)).toBe(21);
     })
 
@@ -63,7 +63,7 @@ describe('TDD com javascript', () => {
       expect(subtrair(1, 2)).toBe(-1);
     })
 
-    test('deve subtrair varios números', () => {
+    test('deve subtrair vários números', () => {
       expect(matematica.subtrair(30, 3, 2, 4, 1)).toBe(20);
     })
 
@@ -108,33 +108,53 @@ describe('TDD com javascript', () => {
     })
   });
 
-  describe('test multiplicação', () => {
+  describe('TEST multiplicação', () => {
     test('deve multiplicar 2 números', () => {
       expect(matematica.multiplicar(2, 2)).toBe(4);
     })
+
+    test('deve multiplicar vários números', () => {
+      expect(matematica.multiplicar(2, 2, 2, 2)).toBe(16);
+    })
+
     test('deve multiplicar string numerica', () => {
       expect(matematica.multiplicar('6', 3)).toBe(18);
     })
-    test('deve multiplicar string numerica', () => {
-      expect(matematica.multiplicar('6', '3')).toBe(18);
+
+    test('deve multiplicar todas as string numerica', () => {
+      expect(matematica.multiplicar('6', '3', '2')).toBe(36);
     })
-    test('não deve multiplicar denominador string alfanumerica', () => {
-      expect(() => matematica.multiplicar(3, "asdf")).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
-    })
-    test('não deve multiplicar passando zero valores', () => {
-      expect(() => matematica.multiplicar()).toThrow(errorMessages.MSG_INFORME_DOIS_OU_MAIS_NUMEROS);
-    })
-    test('não deve multiplicar passando apenas um valor', () => {
-      expect(() => matematica.somar(5)).toThrow(errorMessages.MSG_INFORME_DOIS_OU_MAIS_NUMEROS);
-    })
-    test('não deve multiplicar valores undefined', () => {
-      expect(() => matematica.multiplicar(undefined, undefined)).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
-    })
-    test('não deve multiplicar valores não numericos', () => {
-      expect(() => matematica.multiplicar("asdf", NaN)).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
-    })
-    test('não deve multiplicar valores não numericos parte 2', () => {
-      expect(() => matematica.multiplicar([], NaN)).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
+
+    describe('Erros de multiplicação', () => {
+      test('Erro com valores strings alfanumericas', () => {
+        expect(() => matematica.multiplicar(3, "asdf"))
+          .toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
+      })
+
+      test('Erro quando não passar valores', () => {
+        expect(() => matematica.multiplicar())
+          .toThrow(errorMessages.MSG_INFORME_DOIS_OU_MAIS_NUMEROS);
+      })
+
+      test('Erro quando passar apenas 1 valor', () => {
+        expect(() => matematica.somar(5))
+          .toThrow(errorMessages.MSG_INFORME_DOIS_OU_MAIS_NUMEROS);
+      })
+
+      test('Erro com valores undefined', () => {
+        expect(() => matematica.multiplicar(undefined, undefined))
+          .toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
+      })
+
+      test('Erro com valores NaN', () => {
+        expect(() => matematica.multiplicar(NaN, NaN))
+          .toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
+      })
+
+      test('Erro com valores []', () => {
+        expect(() => matematica.multiplicar([], []))
+          .toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
+      })
     })
   });
 
