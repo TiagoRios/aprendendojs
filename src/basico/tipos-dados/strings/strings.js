@@ -1,47 +1,35 @@
-/**
- * Transforma a primeira letra em maiúscula e as demais em minúsculas.
- * 
- * @param {string[]} listaElementos 
- * 
- * @returns {string[]} Array com as strings capitalizadas.
- */
-function transformaPalavraCapitalizada(listaElementos) {
-  let arrayElemetos = [];
+function capitalizarElementosLista(lista) {
+  let listaPalavrasCapitalizadas = [];
 
-  for (const elementosLista of listaElementos) {
-    let emMinusculo = elementosLista.toLowerCase();
-    let primeiraLetra = emMinusculo.slice(0, 1);
-    let palavraCapitalizada = emMinusculo.replace(primeiraLetra, primeiraLetra.toUpperCase());
+  for (const elemento of lista) {
+    let textoMinusculo = elemento.toLowerCase();
+    let primeiraLetra = textoMinusculo.slice(0, 1);
+    let palavraCapitalizada = textoMinusculo.replace(primeiraLetra, primeiraLetra.toUpperCase());
 
-    arrayElemetos.push(palavraCapitalizada);
+    listaPalavrasCapitalizadas.push(palavraCapitalizada);
   }
 
-  return arrayElemetos;
+  return listaPalavrasCapitalizadas;
 }
 
-/**
- * Formata o nome das estações de mêtro do reino unido. 
- * 
- * @param {string[]} listaElementos Um array com string referente as estações.
- * 
- * @returns {string[]} com as strings formatadas.
- */
-function formatarStringMetroReinoUnido(listaElementos) {
-  let arrayElemetos = [];
+// exemplo: 'GNF576746573fhdg4737dh4;Greenfield',
+function formatarListaEstacoesMetroReinoUnido(lista) {
+  let listaFormatada = [];
 
-  for (const elementoLista of listaElementos) {
-    let codigoMetro = elementoLista.slice(0, 3);
-    let posicaoPontoVirgula = elementoLista.indexOf(';');
-    let nomeDepoisPontoVirgula = elementoLista.slice(posicaoPontoVirgula + 1);
-    let stringFormatada = codigoMetro + ': ' + nomeDepoisPontoVirgula;
+  for (const elemento of lista) {
+    const codigoCidade = elemento.slice(0, 3);
+    const posicaoPontoVirgula = elemento.indexOf(';');
+    const estacao = elemento.slice(posicaoPontoVirgula + 1);
 
-    arrayElemetos.push(stringFormatada);
+    let textoFormatado = `${codigoCidade}:${estacao}`
+
+    listaFormatada.push(textoFormatado);
   }
 
-  return arrayElemetos;
+  return listaFormatada;
 }
 
 module.exports = {
-  formatarStringMetroReinoUnido,
-  transformaPalavraCapitalizada,
+  capitalizarElementosLista,
+  formatarListaEstacoesMetroReinoUnido,
 };
