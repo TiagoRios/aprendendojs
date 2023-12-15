@@ -27,6 +27,9 @@ function isNumeroValido(element) {
   } else if (element.isNaN) {
     resultado = false;
 
+  } else if (Array.isArray(element)) {
+    resultado = false;
+
   } else {
     resultado = true;
   }
