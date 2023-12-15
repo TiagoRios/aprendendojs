@@ -1,8 +1,7 @@
 const { somar, subtrair } = require('./operacoesMatematica.js');
 const OPERACAO = require('./operacoesMatematica.js');
-const MSG_DIVISAO_POR_ZERO = 'denominador não pode ser igual a zero';
-const MSG_DEVEM_SER_NUMEROS = 'valores devem ser números ou strings numericas';
-const MSG_INFORME_DOIS_OU_MAIS_NUMEROS = 'informe no mínimo dois números';
+
+const errorMessages = require('./matematicaErrorMessages');
 
 describe('aprendendo TDD javaScript', () => {
   describe('TEST Somar', () => {
@@ -22,25 +21,25 @@ describe('aprendendo TDD javaScript', () => {
       expect(OPERACAO.somar('6', '3', '8', '7', 9)).toBe(33);
     })
     test('não deve somar denominador string alfanumerica', () => {
-      expect(() => OPERACAO.somar(3, "asdf")).toThrow(MSG_DEVEM_SER_NUMEROS);
+      expect(() => OPERACAO.somar(3, "asdf")).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
     })
     test('não deve somar passando zero valores', () => {
-      expect(() => OPERACAO.somar()).toThrow(MSG_INFORME_DOIS_OU_MAIS_NUMEROS);
+      expect(() => OPERACAO.somar()).toThrow(errorMessages.MSG_INFORME_DOIS_OU_MAIS_NUMEROS);
     })
     test('não deve somar passando apenas um valor', () => {
-      expect(() => OPERACAO.somar(5)).toThrow(MSG_INFORME_DOIS_OU_MAIS_NUMEROS);
+      expect(() => OPERACAO.somar(5)).toThrow(errorMessages.MSG_INFORME_DOIS_OU_MAIS_NUMEROS);
     })
     test('não deve somar valores undefined', () => {
-      expect(() => OPERACAO.somar(undefined, undefined)).toThrow(MSG_DEVEM_SER_NUMEROS);
+      expect(() => OPERACAO.somar(undefined, undefined)).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
     })
     test('não deve somar valores não numericos', () => {
-      expect(() => OPERACAO.somar("asdf", NaN)).toThrow(MSG_DEVEM_SER_NUMEROS);
+      expect(() => OPERACAO.somar("asdf", NaN)).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
     })
     test('não deve somar valores não numericos parte 2', () => {
-      expect(() => OPERACAO.somar([], NaN)).toThrow(MSG_DEVEM_SER_NUMEROS);
+      expect(() => OPERACAO.somar([], NaN)).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
     })
     test('deve somar varios utilizando propriedade arguments', () => {
-      expect(OPERACAO.somarVarios(1, 2, 5, 6, 4, 3)).toBe(21);
+      expect(OPERACAO.somarComArguments(1, 2, 5, 6, 4, 3)).toBe(21);
     })
   });
 
@@ -55,22 +54,22 @@ describe('aprendendo TDD javaScript', () => {
       expect(OPERACAO.subtrair('6', '3')).toBe(3);
     })
     test('não deve subtrair string alfanumerica', () => {
-      expect(() => OPERACAO.subtrair(3, "asdf")).toThrow(MSG_DEVEM_SER_NUMEROS);
+      expect(() => OPERACAO.subtrair(3, "asdf")).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
     })
     test('não deve subtrair passando zero valores', () => {
-      expect(() => OPERACAO.subtrair()).toThrow(MSG_INFORME_DOIS_OU_MAIS_NUMEROS);
+      expect(() => OPERACAO.subtrair()).toThrow(errorMessages.MSG_INFORME_DOIS_OU_MAIS_NUMEROS);
     })
     test('não deve subtrair passando apenas um valor', () => {
-      expect(() => OPERACAO.subtrair(5)).toThrow(MSG_INFORME_DOIS_OU_MAIS_NUMEROS);
+      expect(() => OPERACAO.subtrair(5)).toThrow(errorMessages.MSG_INFORME_DOIS_OU_MAIS_NUMEROS);
     })
     test('não deve subtrair valores undefined', () => {
-      expect(() => OPERACAO.subtrair(undefined, undefined)).toThrow(MSG_DEVEM_SER_NUMEROS);
+      expect(() => OPERACAO.subtrair(undefined, undefined)).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
     })
     test('não deve subtrair valores não numericos', () => {
-      expect(() => OPERACAO.subtrair("asdf", NaN)).toThrow(MSG_DEVEM_SER_NUMEROS);
+      expect(() => OPERACAO.subtrair("asdf", NaN)).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
     })
     test('não deve subtrair valores não numericos parte 2', () => {
-      expect(() => OPERACAO.subtrair([], NaN)).toThrow(MSG_DEVEM_SER_NUMEROS);
+      expect(() => OPERACAO.subtrair([], NaN)).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
     })
   });
 
@@ -85,22 +84,22 @@ describe('aprendendo TDD javaScript', () => {
       expect(OPERACAO.multiplicar('6', '3')).toBe(18);
     })
     test('não deve multiplicar denominador string alfanumerica', () => {
-      expect(() => OPERACAO.multiplicar(3, "asdf")).toThrow(MSG_DEVEM_SER_NUMEROS);
+      expect(() => OPERACAO.multiplicar(3, "asdf")).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
     })
     test('não deve multiplicar passando zero valores', () => {
-      expect(() => OPERACAO.multiplicar()).toThrow(MSG_INFORME_DOIS_OU_MAIS_NUMEROS);
+      expect(() => OPERACAO.multiplicar()).toThrow(errorMessages.MSG_INFORME_DOIS_OU_MAIS_NUMEROS);
     })
     test('não deve multiplicar passando apenas um valor', () => {
-      expect(() => OPERACAO.somar(5)).toThrow(MSG_INFORME_DOIS_OU_MAIS_NUMEROS);
+      expect(() => OPERACAO.somar(5)).toThrow(errorMessages.MSG_INFORME_DOIS_OU_MAIS_NUMEROS);
     })
     test('não deve multiplicar valores undefined', () => {
-      expect(() => OPERACAO.multiplicar(undefined, undefined)).toThrow(MSG_DEVEM_SER_NUMEROS);
+      expect(() => OPERACAO.multiplicar(undefined, undefined)).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
     })
     test('não deve multiplicar valores não numericos', () => {
-      expect(() => OPERACAO.multiplicar("asdf", NaN)).toThrow(MSG_DEVEM_SER_NUMEROS);
+      expect(() => OPERACAO.multiplicar("asdf", NaN)).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
     })
     test('não deve multiplicar valores não numericos parte 2', () => {
-      expect(() => OPERACAO.multiplicar([], NaN)).toThrow(MSG_DEVEM_SER_NUMEROS);
+      expect(() => OPERACAO.multiplicar([], NaN)).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
     })
   });
 
@@ -115,22 +114,22 @@ describe('aprendendo TDD javaScript', () => {
       expect(OPERACAO.dividir('6', '3')).toBe(2);
     })
     test('não deve dividir denominador igual a 0 e throw ERROR', () => {
-      expect(() => OPERACAO.dividir(6, 0)).toThrow(MSG_DIVISAO_POR_ZERO);
+      expect(() => OPERACAO.dividir(6, 0)).toThrow(errorMessages.MSG_DIVISAO_POR_ZERO);
     })
     test('não deve dividir denominador string alfanumerica', () => {
-      expect(() => OPERACAO.dividir(3, "asdf")).toThrow(MSG_DEVEM_SER_NUMEROS);
+      expect(() => OPERACAO.dividir(3, "asdf")).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
     })
     test('não deve dividir esquecer algum parametro', () => {
-      expect(() => OPERACAO.dividir()).toThrow(MSG_DEVEM_SER_NUMEROS);
+      expect(() => OPERACAO.dividir()).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
     })
     test('não deve dividir valores undefined', () => {
-      expect(() => OPERACAO.dividir(undefined, undefined)).toThrow(MSG_DEVEM_SER_NUMEROS);
+      expect(() => OPERACAO.dividir(undefined, undefined)).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
     })
     test('não deve dividir valores não numericos', () => {
-      expect(() => OPERACAO.dividir("asdf", NaN)).toThrow(MSG_DEVEM_SER_NUMEROS);
+      expect(() => OPERACAO.dividir("asdf", NaN)).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
     })
     test('não deve dividir valores não numericos parte 2', () => {
-      expect(() => OPERACAO.dividir([], NaN)).toThrow(MSG_DEVEM_SER_NUMEROS);
+      expect(() => OPERACAO.dividir([], NaN)).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
     })
   })
 });
