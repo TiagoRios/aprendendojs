@@ -26,12 +26,12 @@ describe('TDD com javascript', () => {
     })
 
     describe('Erros de soma', () => {
-      test('Erro quando quando não passar valores', () => {
+      test('Erro quando não passar valores', () => {
         expect(() => matematica.somar())
           .toThrow(errorMessages.MSG_INFORME_DOIS_OU_MAIS_NUMEROS);
       })
 
-      test('Erro quando quando passar apenas 1 valor', () => {
+      test('Erro quando passar apenas 1 valor', () => {
         expect(() => matematica.somar(5))
           .toThrow(errorMessages.MSG_INFORME_DOIS_OU_MAIS_NUMEROS);
       })
@@ -57,33 +57,54 @@ describe('TDD com javascript', () => {
       })
     })
   })
-  describe('TEST Subtrair', () => {
+
+  describe('TEST Subtração', () => {
     test('deve subtrair 2 números', () => {
       expect(subtrair(1, 2)).toBe(-1);
     })
+
+    test('deve subtrair varios números', () => {
+      expect(matematica.subtrair(30, 3, 2, 4, 1)).toBe(20);
+    })
+
     test('deve subtrair string numerica', () => {
       expect(matematica.subtrair('6', 3)).toBe(3);
     })
-    test('deve subtrair string numerica', () => {
-      expect(matematica.subtrair('6', '3')).toBe(3);
+
+    test('deve subtrair todas as string numerica', () => {
+      expect(matematica.subtrair('9', '4', '2')).toBe(3);
     })
-    test('não deve subtrair string alfanumerica', () => {
-      expect(() => matematica.subtrair(3, "asdf")).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
-    })
-    test('não deve subtrair passando zero valores', () => {
-      expect(() => matematica.subtrair()).toThrow(errorMessages.MSG_INFORME_DOIS_OU_MAIS_NUMEROS);
-    })
-    test('não deve subtrair passando apenas um valor', () => {
-      expect(() => matematica.subtrair(5)).toThrow(errorMessages.MSG_INFORME_DOIS_OU_MAIS_NUMEROS);
-    })
-    test('não deve subtrair valores undefined', () => {
-      expect(() => matematica.subtrair(undefined, undefined)).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
-    })
-    test('não deve subtrair valores não numericos', () => {
-      expect(() => matematica.subtrair("asdf", NaN)).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
-    })
-    test('não deve subtrair valores não numericos parte 2', () => {
-      expect(() => matematica.subtrair([], NaN)).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
+
+    describe('Erros de subtração', () => {
+      test('Erro quando não passar valores', () => {
+        expect(() => matematica.subtrair())
+          .toThrow(errorMessages.MSG_INFORME_DOIS_OU_MAIS_NUMEROS);
+      })
+
+      test('Erro quando passar apenas 1 valor', () => {
+        expect(() => matematica.subtrair(5))
+          .toThrow(errorMessages.MSG_INFORME_DOIS_OU_MAIS_NUMEROS);
+      })
+
+      test('Erro com valores strings alfanumericas', () => {
+        expect(() => matematica.subtrair(3, "asdf"))
+          .toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
+      })
+
+      test('Erro com valores undefined', () => {
+        expect(() => matematica.subtrair(undefined, undefined))
+          .toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
+      })
+
+      test('Erro com valores NaN', () => {
+        expect(() => matematica.subtrair(NaN, NaN))
+          .toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
+      })
+
+      test('Erro com valores []', () => {
+        expect(() => matematica.subtrair([], []))
+          .toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
+      })
     })
   });
 
