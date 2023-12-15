@@ -158,33 +158,53 @@ describe('TDD com javascript', () => {
     })
   });
 
-  describe('test dividir', () => {
+  describe('test divisão', () => {
     test('deve dividir 2 números', () => {
       expect(matematica.dividir(6, 3)).toBe(2);
     })
-    test('deve dividir denominador string numerica', () => {
+
+    test('deve dividir quando dividendo for string numerica', () => {
       expect(matematica.dividir('6', 3)).toBe(2);
     })
-    test('deve dividir denominador e numerador string numerica', () => {
+
+    test('deve dividir quando divisor for string numerica', () => {
+      expect(matematica.dividir(6, '3')).toBe(2);
+    })
+
+    test('deve dividir quando dividendo e divisor forem string numerica', () => {
       expect(matematica.dividir('6', '3')).toBe(2);
     })
-    test('não deve dividir denominador igual a 0 e throw ERROR', () => {
-      expect(() => matematica.dividir(6, 0)).toThrow(errorMessages.MSG_DIVISAO_POR_ZERO);
-    })
-    test('não deve dividir denominador string alfanumerica', () => {
-      expect(() => matematica.dividir(3, "asdf")).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
-    })
-    test('não deve dividir esquecer algum parametro', () => {
-      expect(() => matematica.dividir()).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
-    })
-    test('não deve dividir valores undefined', () => {
-      expect(() => matematica.dividir(undefined, undefined)).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
-    })
-    test('não deve dividir valores não numericos', () => {
-      expect(() => matematica.dividir("asdf", NaN)).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
-    })
-    test('não deve dividir valores não numericos parte 2', () => {
-      expect(() => matematica.dividir([], NaN)).toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
+
+    describe('Erros de divisão', () => {
+      test('Erro ao dividir por zero', () => {
+        expect(() => matematica.dividir(6, 0))
+          .toThrow(errorMessages.MSG_DIVISAO_POR_ZERO);
+      })
+
+      test('Erro quando divisor for string alfanumerica', () => {
+        expect(() => matematica.dividir(3, "asdf"))
+          .toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
+      })
+
+      test('Erro quando não passar valores', () => {
+        expect(() => matematica.dividir())
+          .toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
+      })
+
+      test('Erro com valores undefined', () => {
+        expect(() => matematica.dividir(undefined, undefined))
+          .toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
+      })
+
+      test('Erro com valores NaN', () => {
+        expect(() => matematica.dividir(NaN, NaN))
+          .toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
+      })
+
+      test('Erro com valores []', () => {
+        expect(() => matematica.dividir([], []))
+          .toThrow(errorMessages.MSG_DEVEM_SER_NUMEROS);
+      })
     })
   })
 });
