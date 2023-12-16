@@ -1,81 +1,87 @@
-const DESCRICAO = "identificador";
-const DESCRICAO_GLOBAL = "identificador-global"
-const MSG_ERRO_CONVERSAO = "Cannot convert a Symbol value to a string";
+const userMock = require('./userMock');
+const util = require('./symbolUtil');
 
-// Symbols são identificadores únicos
-let symbolLocal = Symbol(DESCRICAO); // A descrição é opcional.
-let symbolLocal2 = Symbol(DESCRICAO); // descrição definida para fins de depuração.
+describe('Básico sobre Symbols', () => {
+    test('os simbolos são únicos', () => {
+        expect(util.symbolLocal == util.symbolLocalMesmaDescricao)
+            .toBe(false);
+    })
 
-// Symbols compartilhados globalmente.
-let globalSymbol = Symbol.for(DESCRICAO_GLOBAL); // Registra o Symbol globalmente, quando não existir globalmente.
-let globalSymbol2;
+    test('deve retornar a descrição do Symbol', () => {
+        expect(util.symbolLocal.description)
+            .toBe(util.DESCRICAO);
+    })
 
-const QUANTIDADE_CHAVES_SIMBOLICAS_USER = 2;
-const QUANTIDADE_CHAVES_NAO_SIMBOLICAS_USER = 2;
+    test('deve retornar o toString() do Symbol', () => {
+        expect(util.symbolLocal.toString())
+            .toBe(`Symbol(${util.DESCRICAO})`);
+    })
 
-const user = {
-    name: "user1",
-    age: 999,
-    [symbolLocal]: 123, // precisa estar entre colchetes.
-    [symbolLocal2]: 456,
-}
+    test('Erro ao converter Symbol para string', () => {
+        expect(() => "" + util.symbolLocal)
+            .toThrow(util.MSG_ERRO_CONVERSAO);
+    })
 
-test('retorna false na igualdade', () => {
-    expect(symbolLocal == symbolLocal2).toBe(false);
-})
-test('retorna o toString() do Symbol', () => {
-    expect(symbolLocal.toString()).toBe(`Symbol(${DESCRICAO})`);
-})
-test('retorna a descrição do Symbol', () => {
-    expect(symbolLocal.description).toBe(DESCRICAO);
-})
-test(`msg retorno: ${MSG_ERRO_CONVERSAO}`, () => {
-    expect(() => "" + symbolLocal).toThrow(MSG_ERRO_CONVERSAO);
+    test('Object.assign({}, obj) deve copiar as chaves Symbol do objeto', () => {
+        let objetoCopiado = Object.assign({}, userMock);
+
+        expect(objetoCopiado[util.symbolLocal])
+            .toBe(userMock[util.symbolLocal]);
+    })
 })
 
-/* ============================================================ 
-                loop for...in ignora chaves Symbol
-                  Object.keys(user) também ignora 
-   ============================================================ */
+describe('Ignora chaves Symbol em objetos', () => {
+    test('for..in deve ignorar chaves Symbol', () => {
+        let arr = [];
 
-test('for..in ignora chaves Symbol', () => {
-    let arr = [];
+        for (let key in userMock) {
+            arr.push(key);
+        }
 
-    for (let key in user) {
-        arr.push(key);
-    }
+        expect(arr.length).toBe(util.CHAVES_NAO_SIMBOLICAS);
+    })
 
-    expect(arr.length).toBe(QUANTIDADE_CHAVES_NAO_SIMBOLICAS_USER);
-})
-test('Copia de user, Acesso direto, resultado: 123', () => {
-    let copiaUser = Object.assign({}, user); // Copia também as chaves Symbol.
+    test(' Object.keys(obj) deve ignorar chaves Symbol', () => {
+        let arr = [];
 
-    expect(copiaUser[symbolLocal]).toBe(123);
-})
+        const chavesObjeto = Object.keys(userMock);
 
-/* ============================================================ 
-            Chaves simbolicas não são 100% ocultas
-   ============================================================ */
+        for (let i = 0; i < chavesObjeto.length; i++) {
+            arr.push(chavesObjeto[i]);
+        }
 
-test(`retorna quantidade chaves simbolicas igual a ${QUANTIDADE_CHAVES_SIMBOLICAS_USER}`, () => {
-    // Acessar Symbols escondidos.
-    expect(Object.getOwnPropertySymbols(user).length).toBe(QUANTIDADE_CHAVES_SIMBOLICAS_USER);
-})
-test('retorn Array com todas as chaves do objeto user', () => {
-    expect(Reflect.ownKeys(user).length).toBe(QUANTIDADE_CHAVES_NAO_SIMBOLICAS_USER + QUANTIDADE_CHAVES_SIMBOLICAS_USER);
+        expect(arr.length).toBe(util.CHAVES_NAO_SIMBOLICAS);
+    })
 })
 
-/* ============================================================ 
-                         Symbols globais
-   ============================================================ */
+describe('Symbol não são totalmente inacessíveis', () => {
+    test(`Object.getOwnPropertySymbols(obj) deve acessar chaves Symbol escondidas`, () => {
+        expect(Object.getOwnPropertySymbols(userMock).length)
+            .toBe(util.CHAVES_SIMBOLICAS);
+    })
 
-test('Symbols globais são compartilhados', () => {
-    globalSymbol2 = Symbol.for(DESCRICAO_GLOBAL); // busca no registro, se não existir cria novo Symbol e insere no registro.
-    expect(globalSymbol === globalSymbol2).toBe(true);
+    test('Reflect.ownKeys(userMock) deve acessar chaves Symbol escondidas', () => {
+        const totalPropriedades = util.CHAVES_NAO_SIMBOLICAS + util.CHAVES_SIMBOLICAS;
+
+        expect(Reflect.ownKeys(userMock).length)
+            .toBe(totalPropriedades);
+    })
 })
-test('descrição do Symbol global Symbol.keyFor()', () => {
-    expect(Symbol.keyFor(globalSymbol)).toBe(DESCRICAO_GLOBAL);
-})
-test('Symbols locais são indefinidos em Symbol.keyFor(symbolLocal)', () => {
-    expect(Symbol.keyFor(symbolLocal)).toBe(undefined);
+
+describe('Symbol globais', () => {
+    test('Symbols globais são compartilhados', () => {
+        const symbolGlobalRecuperado = Symbol.for(util.DESCRICAO_GLOBAL); // busca no registro
+
+        expect(util.symbolGlobal === symbolGlobalRecuperado).toBe(true);
+    })
+
+    test('Symbol.keyFor() deve retornar a descrição do Symbol global', () => {
+        expect(Symbol.keyFor(util.symbolGlobal))
+            .toBe(util.DESCRICAO_GLOBAL);
+    })
+
+    test('Symbols locais são indefinidos em Symbol.keyFor(symbolLocal)', () => {
+        expect(Symbol.keyFor(util.symbolLocal))
+            .toBe(undefined);
+    })
 })
