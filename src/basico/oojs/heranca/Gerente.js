@@ -1,9 +1,7 @@
-const { Funcionario } = require("./Funcionario");
+import Funcionario from "./Funcionario";
 
-function Gerente(nome) {
-  this.minhaBase = Funcionario; // Preferir funcionario.call(this, nome)
-  this.minhaBase(nome); // Função pai sendo chamada.
+export default function Gerente(nome) {
+  Funcionario.call(this, nome);
   this.relatorios = ['relatorio geral'];
 }
-
-module.exports = Gerente;
+Gerente.prototype = Object.create(Funcionario.prototype);

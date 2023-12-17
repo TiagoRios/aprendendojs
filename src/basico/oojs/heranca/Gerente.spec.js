@@ -1,13 +1,13 @@
-const Gerente = require("./Gerente");
-const { Funcionario } = require('./Funcionario');
+import Funcionario from './Funcionario';
+import Gerente from './Gerente';
 
 const departamento = require('./departamento');
-const pessoaMock = require('./pessoaMock');
+const funcionarioMock = require('./funcionarioMock');
 
-let gerente = new Gerente(pessoaMock.nome);
+let gerente = new Gerente(funcionarioMock.nome);
 
 test(`gerente deve herdar propriedade nome de funcionario`, () => {
-  expect(gerente.nome).toBe(NOME_DEFAULT);
+  expect(gerente.nome).toBe(funcionarioMock.nome);
 })
 
 test(`gerente deve herdar propriedade departamento de funcionario`, () => {
@@ -19,8 +19,8 @@ test(`gerente deve possuir um relatorio geral por padrão`, () => {
 })
 
 // TODO: Sem ligamento com prototype?
-test.skip(`gerente deve herdar propriedade dinãmica definida na cadeia de prototipos`, () => {
-  expect(gerente.especialidade).toBe('sem especialidade');
+test(`gerente deve herdar propriedade dinãmica definida na cadeia de prototipos`, () => {
+  expect(gerente.especialidade).toBe(funcionarioMock.especialidade);
 })
 
 describe('propriedade __proto__ da cadeia de prototypes', () => {
@@ -29,7 +29,7 @@ describe('propriedade __proto__ da cadeia de prototypes', () => {
   })
 
   // TODO: Sem ligamento com prototype?
-  test.skip(`gerente com 2 propriedades __proto__`, () => {
+  test(`gerente com 2 propriedades __proto__`, () => {
     expect(gerente.__proto__.__proto__).toBe(Funcionario.prototype);
   })
 })
