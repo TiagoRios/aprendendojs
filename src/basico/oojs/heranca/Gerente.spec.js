@@ -1,17 +1,17 @@
 const Gerente = require("./Gerente");
 const { Funcionario } = require('./Funcionario');
 
-const DEPARTAMENTO_GERAL = 'geral';
-const NOME_GERENTE = 'nome do gerente';
+const departamento = require('./departamento');
+const pessoaMock = require('./pessoaMock');
 
-let gerente = new Gerente(NOME_GERENTE);
+let gerente = new Gerente(pessoaMock.nome);
 
 test(`gerente deve herdar propriedade nome de funcionario`, () => {
-  expect(gerente.nome).toBe(NOME_GERENTE);
+  expect(gerente.nome).toBe(NOME_DEFAULT);
 })
 
 test(`gerente deve herdar propriedade departamento de funcionario`, () => {
-  expect(gerente.departamento).toBe(DEPARTAMENTO_GERAL);
+  expect(gerente.departamento).toBe(departamento.GERAL);
 })
 
 test(`gerente deve possuir um relatorio geral por padrão`, () => {
