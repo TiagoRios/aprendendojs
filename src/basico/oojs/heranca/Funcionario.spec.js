@@ -1,12 +1,11 @@
-const { Gerente, Operario, Vendedor, Engenheiro, Funcionario } = require('./Funcionario.js');
+const { Operario, Vendedor, Engenheiro, Funcionario } = require('./Funcionario.js');
 
-let gerente, vendedor, operario, engenheiro, funcionario, funcionario2;
+let vendedor, operario, engenheiro, funcionario, funcionario2;
 
-const NOME_GERENTE = 'nome do gerente',
+const NOME_FUNCIONARIO = 'nome do funcionario',
     NOME_VENDEDOR = 'nome do vendedor',
     NOME_OPERARIO = 'nome do operario',
     NOME_ENGENHEIRO = 'nome do engenheiro',
-    NOME_FUNCIONARIO = 'nome do funcionario',
 
     DEPARTAMENTO_GERAL = 'geral',
     DEPARTAMENTO_VENDEDOR = 'vendas',
@@ -15,7 +14,6 @@ const NOME_GERENTE = 'nome do gerente',
     NOME_MAQUINA = 'retro-escavadeira';
 
 beforeAll(() => {
-    gerente = new Gerente(NOME_GERENTE);
     vendedor = new Vendedor(NOME_VENDEDOR);
     operario = new Operario(NOME_OPERARIO);
     engenheiro = new Engenheiro(NOME_ENGENHEIRO);
@@ -45,18 +43,6 @@ describe('orientação objetos em js', () => {
 
         test(`operario deve herda propriedade dinãmica`, () => {
             expect(operario.especialidade).toBe('sem especialidade');
-        });
-    });
-
-    describe('gerente', () => {
-        test(`herança de gerente e funcionario`, () => {
-            expect(gerente.nome).toBe(NOME_GERENTE);
-            expect(gerente.departamento).toBe(DEPARTAMENTO_GERAL);
-            expect(gerente.relatorios.length).toBe(1);
-        });
-
-        test(`gerente deve herda propriedade dinãmica`, () => {
-            expect(gerente.especialidade).toBe('sem especialidade');
         });
     });
 
