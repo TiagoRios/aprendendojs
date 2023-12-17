@@ -1,12 +1,12 @@
 import Funcionario from './Funcionario.js';
 
 const departamento = require('./departamento');
-const pessoaMock = require('./pessoaMock');
+const funcionarioMock = require('./funcionarioMock.js');
 
-const funcionario = new Funcionario(pessoaMock.nome)
+const funcionario = new Funcionario(funcionarioMock.nome)
 
 test(`deve retornar nome do funcionário`, () => {
-    expect(funcionario.nome).toBe(pessoaMock.nome);
+    expect(funcionario.nome).toBe(funcionarioMock.nome);
 })
 
 test(`deve retornar departamento do funcionário`, () => {
