@@ -1,26 +1,15 @@
-// Funções no mesmo arquivo somente por conveniência.
-
 /**
  * Função base para demonstrar herança com com prototipagem.
  * 
- * @param {*} nome O nome do funcionário. 
+ * @param {*} nome 
+ *      O nome do funcionário. 
  */
 function Funcionario(nome) {
     this.nome = nome || '';
     this.departamento = 'geral';
 }
-
-/**
- * Função filha de Funcionário.
- * 
- * @param {*} nome 
- */
-function Gerente(nome) {
-    this.minhaBase = Funcionario; // Preferir funcionario.call(this, nome)
-    this.minhaBase(nome); // Função pai sendo chamada.
-    this.relatorios = ['um relatorio'];
-}
-Gerente.prototype = Object.create(Funcionario.prototype); // Prefira esta forma.
+//Definindo uma propriedade dinãmica para uma função acima na cadeia de prototipos.
+Funcionario.prototype.especialidade = 'sem especialidade';
 
 /**
  * Função filha de Funcionário.
@@ -62,10 +51,9 @@ function Vendedor(nome) {
 }
 // Vendedor.prototype = new Operario(); // Não vinculada a cadeia de prototipos.
 
-
-//Definindo uma propriedade dinãmica para uma função acima na cadeia de prototipos.
-Funcionario.prototype.especialidade = 'sem especialidade';
-
 module.exports = {
-    Funcionario, Gerente, Operario, Vendedor, Engenheiro,
+    Funcionario,
+    Operario,
+    Vendedor,
+    Engenheiro,
 }
