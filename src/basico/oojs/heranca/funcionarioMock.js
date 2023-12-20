@@ -4,4 +4,4 @@ const funcionarioMock = {
   maquina: "computador",
 }
 
-module.exports = funcionarioMock;
+export default funcionarioMock;

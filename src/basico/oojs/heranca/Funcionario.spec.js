@@ -1,7 +1,7 @@
 import Funcionario from './Funcionario.js';
 
-const departamento = require('./departamento');
-const funcionarioMock = require('./funcionarioMock.js');
+import departamento from "./departamento";
+import funcionarioMock from "./funcionarioMock";
 
 const funcionario = new Funcionario(funcionarioMock.nome)
 

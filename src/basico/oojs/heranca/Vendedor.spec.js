@@ -1,6 +1,6 @@
+import Vendedor from "./Vendedor";
 import departamento from "./departamento";
 import funcionarioMock from "./funcionarioMock";
-import Vendedor from "./Vendedor";
 
 const vendedor = new Vendedor(funcionarioMock.nome);
 

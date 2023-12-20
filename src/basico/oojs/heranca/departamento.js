@@ -4,4 +4,4 @@ const departamento = {
   ENGENHARIA: 'engenharia',
 }
 
-module.exports = departamento;
+export default departamento;

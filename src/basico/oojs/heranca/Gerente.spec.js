@@ -1,8 +1,8 @@
 import Funcionario from './Funcionario';
 import Gerente from './Gerente';
 
-const departamento = require('./departamento');
-const funcionarioMock = require('./funcionarioMock');
+import departamento from "./departamento";
+import funcionarioMock from "./funcionarioMock";
 
 let gerente = new Gerente(funcionarioMock.nome);
 
