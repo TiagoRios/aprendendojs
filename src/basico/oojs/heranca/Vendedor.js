@@ -1,7 +1,10 @@
+import Operario from "./Operario";
+import departamento from "./departamento";
+
 export default function Vendedor(nome) {
   Operario.call(this, nome);
-  this.departamento = 'vendas'
-  this.quota = 100; 
+  this.departamento = departamento.VENDAS;
+  this.quota = 100;
 }
 // Não vinculação a cadeia de prototipos.
 // Vendedor.prototype = new Operario();
