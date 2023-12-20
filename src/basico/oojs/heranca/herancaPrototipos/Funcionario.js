@@ -1,4 +1,4 @@
-import departamento from "./departamento";
+import departamento from "../herancaUtil/departamento";
 
 export default function Funcionario(nome) {
     this.nome = nome || '';

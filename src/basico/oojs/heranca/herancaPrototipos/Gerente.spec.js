@@ -1,8 +1,8 @@
 import Funcionario from './Funcionario';
 import Gerente from './Gerente';
 
-import departamento from "./departamento";
-import funcionarioMock from "./funcionarioMock";
+import departamento from "../herancaUtil/departamento";
+import funcionarioMock from "../herancaUtil/funcionarioMock";
 
 let gerente = new Gerente(funcionarioMock.nome);
 

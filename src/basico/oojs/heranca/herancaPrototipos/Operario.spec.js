@@ -1,8 +1,8 @@
 import Funcionario from './Funcionario';
 import Operario from './Operario';
 
-import departamento from "./departamento";
-import funcionarioMock from "./funcionarioMock";
+import departamento from "../herancaUtil/departamento";
+import funcionarioMock from "../herancaUtil/funcionarioMock";
 
 const operario = new Operario(funcionarioMock.nome);
 

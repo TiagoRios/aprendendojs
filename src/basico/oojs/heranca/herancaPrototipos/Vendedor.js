@@ -1,5 +1,5 @@
 import Operario from "./Operario";
-import departamento from "./departamento";
+import departamento from "../herancaUtil/departamento";
 
 export default function Vendedor(nome) {
   Operario.call(this, nome);
