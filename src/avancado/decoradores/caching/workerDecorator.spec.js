@@ -1,3 +1,4 @@
+import cachingDecorator from "./cachingDecorator";
 import hash from "./hash";
 import worker from "./worker";
 

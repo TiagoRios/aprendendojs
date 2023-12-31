@@ -21,3 +21,5 @@ function cachingDecorator(func, hash) {
     return result;
   };
 }
+
+export default cachingDecorator;
