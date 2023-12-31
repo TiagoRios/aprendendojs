@@ -1,56 +1,48 @@
-/* 
-Aprender a usar: 
-    yield
-    yield*
-    function*
-*/
-const fazerIteracao = (array) => {
-    let proximoIndex = 0;
-    return {
-        next: () => {
-            return proximoIndex < array.length ?
-                { valor: array[proximoIndex++], feito: false } :
-                { feito: true };
-        }
-    }
-};
+import {
+    iteradorArray,
+    meuObjetoIteravel,
+    somarNumerosArray,
+} from "./iteradores";
 
-let meuIteravel = {};
-meuIteravel[Symbol.iterator] = function* () {
-    yield 3;
-    yield 2;
-    yield 1;
-};
+describe('iterador criado para fazer iteração em elementos de array', () => {
+    let iteracao;
 
-function* gen() {
-    yield* ["a", "b", "c"]
-}
+    beforeEach(() => {
+        iteracao = iteradorArray(['a', 'b']);
+    })
 
-const IteravelEmbutidoLacoForSomaNumerosArray = (array) => {
-    let contador = 0;
-    for (let value of array) {
-        contador += value;
-    }
-    return contador;
-}
-
-describe('iteradores', () => {
-    test('fazer iteração', () => {
-        let it = fazerIteracao(['a', 'b']);
-        expect(it.next().feito).toBe(false);
-        expect(it.next().valor).toBe('b');
-        expect(it.next().feito).toBe(true);
+    test('Deve retornar o valor do primeiro elemento', () => {
+        expect(iteracao.next().valor).toBe('a');
     });
-    //Usar somente em casos específicos. 
-    test('meu iterável', () => {
-        expect([...meuIteravel]).toHaveLength(3);
+
+    test('Deve retornar o valor do segundo elemento', () => {
+        iteracao.next(); // 'a'
+        expect(iteracao.next().valor).toBe('b');
     });
-    
-    test('iterável embutido', () => {
-        expect(IteravelEmbutidoLacoForSomaNumerosArray([1, 8, 9])).toBe(18);
-        expect([...'abcdefghij']).toHaveLength(10);
-        expect(gen().next().done).toBe(false);
-        expect(gen().next().value).toBe('a');
+
+    test('Deve chegar ao fim da iteração e não possuir mais elementos para iterar', () => {
+        iteracao.next(); // 'a'
+        iteracao.next(); // 'b'
+        expect(iteracao.next().feito).toBe(true);
+    });
+
+    test('Não deve ter chegado ao fim da iteração', () => {
+        expect(iteracao.next().feito).toBe(false);
     });
 });
 
+describe('Objeto iterével com propriedade do tipo Symbol.iterator', () => {
+    test('Deve iterar sobre objeto iterável', () => {
+        expect([...meuObjetoIteravel]).toHaveLength(3);
+    });
+});
+
+describe('Iteraveis embutidos', () => {
+    test('Deve iterar em array', () => {
+        expect([...'abcdefghij']).toHaveLength(10);
+    });
+
+    test('Deve iterar função que utiliza Laço for', () => {
+        expect(somarNumerosArray([1, 8, 9])).toBe(18);
+    });
+});
