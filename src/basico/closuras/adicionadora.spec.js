@@ -1,4 +1,4 @@
-import criarAdicionadora from "./funcaoAdicionadora";
+import criarAdicionadora from "./adicionadora";
 
 let adicionadora;
 
